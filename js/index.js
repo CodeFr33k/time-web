@@ -15,7 +15,16 @@ function setTime() {
         second: '2-digit',
         timeZone: 'UTC',
     }).format(now);
-    document.body.innerText = local + ' ' + utc + 'Z';
+    const div1 = document.createElement('div');
+    div1.innerText = local;
+    const div2= document.createElement('div');
+    div2.innerText = utc + ' Z';
+    const box = document.createElement('div');
+    box.className = 'time-box';
+    box.appendChild(div1);
+    box.appendChild(div2);
+    document.body.innerHTML = '';
+    document.body.appendChild(box);
 }
 
 setInterval(setTime, 1000);
