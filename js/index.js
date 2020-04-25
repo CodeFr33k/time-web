@@ -32,7 +32,7 @@ function setTime() {
     );
     const utc = (
         dayUTC + '日 ' + 
-        twoDigit(now.getUTCHours() % 12) + ':' +
+        twoDigit(now.getUTCHours()) + ':' +
         twoDigit(now.getUTCMinutes()) + ':' +
         twoDigit(now.getUTCSeconds()) +
         'Z'
