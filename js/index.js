@@ -1,24 +1,46 @@
 import('../pkg/index.js').catch(console.error);
 
+function getDayOfYear(year, month, dayOfMonth){
+    const seconds = (
+        Date.UTC(year, month, dayOfMonth) - 
+        Date.UTC(year, 0, 0)
+    );
+    return seconds / 24 / 60 / 60 / 1000;
+}
+
+function twoDigit(num) {
+    return ('0'+num).slice(-2)
+}
+
 function setTime() {
     const now = new Date();
-    const local = Intl.DateTimeFormat('en-US', {
-        hour: 'numeric',
-        hourCycle: 'h11',
-        minute: '2-digit',
-        second: '2-digit',        
-    }).format(now);
-    const utc = Intl.DateTimeFormat('en-US', {
-        hour: '2-digit',
-        hourCycle: 'h24',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'UTC',
-    }).format(now);
+    const dayLocal = getDayOfYear(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+    ); 
+    const dayUTC = getDayOfYear(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getUTCDate(),
+    ); 
+    const local = (
+        dayLocal + '日 ' +
+        twoDigit(now.getHours() % 12) + ':' +
+        twoDigit(now.getMinutes()) + ':' +
+        twoDigit(now.getSeconds()) 
+    );
+    const utc = (
+        dayUTC + '日 ' + 
+        twoDigit(now.getUTCHours() % 12) + ':' +
+        twoDigit(now.getUTCMinutes()) + ':' +
+        twoDigit(now.getUTCSeconds()) +
+        'Z'
+    );
     const div1 = document.createElement('div');
     div1.innerText = local;
     const div2= document.createElement('div');
-    div2.innerText = utc + ' Z';
+    div2.innerText = utc;
     const box = document.createElement('div');
     box.className = 'time-box';
     box.appendChild(div1);
