@@ -25,13 +25,15 @@ function setTime() {
         now.getUTCDate(),
     ); 
     const local = (
-        dayLocal + '日 ' +
+        now.getFullYear() + '-' +
+        dayLocal + '|' +
         twoDigit(now.getHours() % 12) + ':' +
         twoDigit(now.getMinutes()) + ':' +
         twoDigit(now.getSeconds()) 
     );
     const utc = (
-        dayUTC + '日 ' + 
+        now.getFullYear() + '-' +
+        dayUTC + '|' + 
         twoDigit(now.getUTCHours()) + ':' +
         twoDigit(now.getUTCMinutes()) + ':' +
         twoDigit(now.getUTCSeconds()) +
@@ -39,6 +41,7 @@ function setTime() {
     );
     const div1 = document.createElement('div');
     div1.innerText = local;
+    div1.className = 'local-time-element';
     const div2= document.createElement('div');
     div2.innerText = utc;
     const box = document.createElement('div');
