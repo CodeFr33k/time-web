@@ -7,7 +7,7 @@ html {
 body {
     margin: 0;
     font-family: 'Cousine', monospace;
-    font-size: 120px;
+    font-size: 60px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -16,5 +16,5 @@ body {
 }
 
 .local-time-element {
-    padding-bottom: 60px;
+    padding-bottom: 40px;
 }
